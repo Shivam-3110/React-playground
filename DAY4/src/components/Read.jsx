@@ -1,11 +1,15 @@
 import React from 'react'
-
+import "./Read.css";
 const Read = (props) => {
      const todos = props.todos;
   const settodos = props.settodos;
+  const deleteHandler = (id) => {
+  const filtredtodo =  todos.filter((todo)=> todo.id != id);
+  settodos(filtredtodo);
+  };  
     const rendertodos = todos.map((todo)=>{
-        return <li style={{color:todo.isCompleted ?"green":"tomato"}}
-        key = {todo.id}>{todo.title}</li> ;
+        return <li 
+        key = {todo.id}>{todo.title} | <span onClick={()=>deleteHandler(todo.id)}> DELETE </span></li> ;
    });
   return (
     
@@ -19,3 +23,4 @@ const Read = (props) => {
 }
 
 export default Read;
+
