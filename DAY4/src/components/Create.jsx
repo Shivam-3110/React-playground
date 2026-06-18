@@ -21,17 +21,18 @@ const Create = (props) => {
       settitle("");
       }
   return (
-    <>
-    <h1>
-        Create Tasks
+    < div className="border w-[60%] p-10 mx-auto">
+    <h1 className=" mb-10 text-5xl text-white font-thin">
+        Set <span className="text-red-400"> Reminders </span>for <br></br>tasks
       </h1>
        <form onSubmit ={submitHandler}>
-        < input onChange={(e)=> settitle(e.target.value)} value={title} type = 'text' placeholder="title"/>
+        < input className=" p-2 border-b w-full text-2xl font-thin outline-0"
+        onChange={(e)=> settitle(e.target.value)} value={title} type = 'text' placeholder="title"/>
         
         <br/>
-        <button> Create Todo </button>
+        <button className="mt-5 text-xl px-10 py-2 border rounded"> Create Todo </button>
        </form> 
-       </>
+       </div>
   )
 }
 

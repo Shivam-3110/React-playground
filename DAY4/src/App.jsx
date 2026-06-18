@@ -13,7 +13,7 @@ import Read   from "./components/Read";
 
    
   return (
-    <div>
+    <div className =" text-white flex w-screen h-screen bg-zinc-800 p-10 ">
       <Create todos={todos} settodos={settodos}/>
       <Read todos={todos} settodos={settodos}/>
     </div>
