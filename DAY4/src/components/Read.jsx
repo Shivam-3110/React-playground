@@ -1,10 +1,12 @@
 import React from 'react'
+import {toast} from "react-toastify";
 const Read = (props) => {
      const todos = props.todos;
   const settodos = props.settodos;
   const deleteHandler = (id) => {
   const filtredtodo =  todos.filter((todo)=> todo.id != id);
   settodos(filtredtodo);
+  toast.error("Todo deleted!");
   };  
     const rendertodos = todos.map((todo)=>{
         return <li className='mb-4 flex justify-between items-center p-3 bg-gray-700 rounded'
