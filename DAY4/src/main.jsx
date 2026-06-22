@@ -6,9 +6,8 @@ import App from './App.jsx'
 import './index.css'
 import Wrapper from './components/Wrapper.jsx';
 createRoot(document.getElementById('root')).render(
-/*  <>
-    <App />
+  <Wrapper>
+<App />
     <ToastContainer position="top-center"/>
- </> */
-  <Wrapper  App ={<App/>}/>
+    </Wrapper>
 )
