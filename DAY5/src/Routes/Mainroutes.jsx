@@ -5,6 +5,8 @@ import Product from '../components/Product.jsx'
 import Service from '../components/service.jsx'
 import About from '../components/About.jsx'
 import ProductDetails from '../components/ProductDetails.jsx';
+import ServiceDetails from '../components/ServiceDetails.jsx';
+
 export default function Mainroutes() {
   return (
      <Routes>
@@ -12,7 +14,9 @@ export default function Mainroutes() {
          <Route path="/product" element={<Product />}/>
           <Route path="/product/detail/:name" element={<ProductDetails />}/>
 
-          <Route path="/service" element={<Service/>}/>
+          <Route path="/service" element={<Service/>}> 
+          <Route path="/service/details" element={<ServiceDetails/>}/>
+          </Route>
            <Route path="/about" element={<About />}/>
     </Routes>
   )

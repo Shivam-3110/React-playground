@@ -1,8 +1,10 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export default function ProductDetails() {
     const navigate = useNavigate();
+    const params = useParams();
+    console.log(params);
   return (
     <div>
 
