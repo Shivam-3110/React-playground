@@ -5,6 +5,7 @@ import Home from '../Pages/Home'
 import About from '../Pages/About'
 import Recipes from '../Pages/Recipes'
 import Create from '../Pages/Create'
+import SingleRecipe from '../Pages/SingleRecipe'
 export default function Mainroutes() {
 
   return (
@@ -16,6 +17,7 @@ export default function Mainroutes() {
       
         </Route>
           <Route path ="/create-recipe" element={<Create/>}/>
+          <Route path="/recipes/details/:id" element={<SingleRecipe/>}> </Route>
     </Routes>
   )
 }
