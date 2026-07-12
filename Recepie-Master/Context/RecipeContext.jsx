@@ -12,7 +12,7 @@ export default function RecipeContext(props) {
       category:"Dinner",
       ingredients:["Chicken","Rice","Onion","Tomato","Spices"],
       instructions:"Cook chicken and rice separately. Layer them and cook together.",
-      image:"https://example.com/chicken-biryani.jpg"
+      image:"https://static.vecteezy.com/system/resources/thumbnails/054/743/053/small/mouthwatering-biryani-with-flavorful-rice-and-tender-chicken-pieces-free-photo.jpg"
     }
    ]);
    console.log(data);

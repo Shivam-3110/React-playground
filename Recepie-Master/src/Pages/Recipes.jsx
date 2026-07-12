@@ -9,6 +9,6 @@ export default function Recipes() {
     <RecipeCard key={recipe.id} recipe={recipe} />
   )
   return (
-    <div className='flex flex-wrap'>{renderrecipes}</div>
+    <div className='flex flex-wrap'>{data.length > 0 ? renderrecipes:"No recipes found"}</div>
   )
     }
