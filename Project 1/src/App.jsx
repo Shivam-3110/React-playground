@@ -1,14 +1,16 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from "react";
+import { useEffect } from "react";
+import { asyncgetusers } from "./store/userActions";
+import { useDispatch , useSelector } from "react-redux";
+const App = () => {
+    const data = useSelector((state)=>state.user.data);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        asyncgetusers();
+    },[]);
+  
+    return <div> App </div>;
 
-export const App = (props) => {
-  return (
-    <div>App</div>
-  )
 }
 
-const mapStateToProps = (state) => ({})
-
-const mapDispatchToProps = {}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App; 
