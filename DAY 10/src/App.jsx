@@ -11,9 +11,11 @@ export default function App() {
       <Navbar/>
       {
         toggle?<div>
-       <Usercard/>
+       { users.map((elem)=> {
+        return <Usercard user = {elem}/>
+       })}
       </div>: <div className ="flex justify-center items-center h-[70%]">
-        <Form setUsers={setUsers}/>
+        <Form users={users} setUsers={setUsers} setToggle={setToggle}/>
       </div>
       }
     </div>

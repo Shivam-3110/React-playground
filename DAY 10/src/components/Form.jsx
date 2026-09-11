@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import {useForm} from 'react-hook-form';
-function Form ({setUsers}) {
+function Form ({setUsers , setToggle,users}) {
 
   let {register,handleSubmit,reset,formState:{errors}} = useForm({ mode:"onChange"});
   
   let formSubmit = (data) => {
     console.log(data);
     setUsers((prev) => [...prev,data])
+    localStorage.setItem("users",JSON.stringify(users))
     reset();
+    setToggle((prev) => !prev)
   }
   return (
     <div className ="flex flex-col gap-6">
