@@ -6,8 +6,9 @@ function Form ({setUsers , setToggle,users}) {
   
   let formSubmit = (data) => {
     console.log(data);
-    setUsers((prev) => [...prev,data])
-    localStorage.setItem("users",JSON.stringify(users))
+   let arr =  [...users,data];
+   setUsers(arr);
+    localStorage.setItem("users",JSON.stringify(arr))
     reset();
     setToggle((prev) => !prev)
   }

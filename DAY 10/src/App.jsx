@@ -5,7 +5,9 @@ import Form from './components/Form'
 
 export default function App() {
   const [toggle,setToggle] = useState(false);
-   const[users,setUsers] = useState([])
+   const[users,setUsers] = useState(() => {
+    JSON.parse(localStorage.getItem("users"));
+   });
   return (
     <div className = "p-3 h-screen flex flex-col gap-4">
       <Navbar/>
