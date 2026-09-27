@@ -1,6 +1,10 @@
 import React from 'react'
-
-function ProductCard({product}) {
+ import { toast } from "react-toastify";
+function ProductCard({product,setCartItems}) {
+   const addToCart = () => {
+   setCartItems((prev)=>[...prev , product]) 
+   toast.success("Product added to cart!");
+   }
   return (
     
     <div className="w-full max-w-sm overflow-hidden rounded-2xl bg-white shadow-lg transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
@@ -49,7 +53,8 @@ function ProductCard({product}) {
             ${product.price}
           </span>
 
-          <button  className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition hover:bg-blue-700">
+          <button onClick={addToCart}
+          className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition hover:bg-blue-700">
             Add to Cart
           </button>
         </div>

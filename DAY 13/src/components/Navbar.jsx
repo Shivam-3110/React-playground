@@ -1,16 +1,15 @@
 import React from 'react'
 
-function Navbar() {
+function Navbar({setisCartOpen}) {
   return (
     <div className='bg-black text-white p-5 flex items-center justify-between '> 
         <div> logo </div>
         <div className="flex gap-10 text-xl rounded">
-            <p className='cursor-pointer'> Home </p>
-            <p className='cursor-pointer'> Cart </p>
+            <p onClick={() => setisCartOpen(false)}className='cursor-pointer'> Home </p>
+            <p onClick={() => setisCartOpen(true)}className='cursor-pointer'> Cart </p>
         </div>
         <button> Login </button>
     </div>
   )
 }
-
 export default Navbar ;
