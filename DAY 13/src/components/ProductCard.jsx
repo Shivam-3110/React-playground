@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
  import { toast } from "react-toastify";
-function ProductCard({product,setCartItems}) {
+import { myStore } from '../context/MyContext';
+function ProductCard({product,isInCart}) {
+  let {setCartItems , incrementQuantity,decrementQuantity} = useContext(myStore);
    const addToCart = () => {
-   setCartItems((prev)=>[...prev , product]) 
+   setCartItems((prev)=>[...prev ,{...product , quantity:1}]) 
    toast.success("Product added to cart!");
    }
   return (
@@ -53,10 +55,16 @@ function ProductCard({product,setCartItems}) {
             ${product.price}
           </span>
 
-          <button onClick={addToCart}
+         
+            {
+              isInCart ? <button  className="rounded-lg bg-gray-600 px-4 py-2 font-medium text-white transition hover:bg-gray-700"> 
+                <span onClick={() =>incrementQuantity(product.id) }>{isInCart.quantity}</span> <span>1</span> <span onClick={() =>decrementQuantity(product.id)}> {isInCart.quantity} </span>
+                </button> 
+              : <button  onClick={addToCart}
           className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition hover:bg-blue-700">
             Add to Cart
           </button>
+            }
         </div>
 
       </div>
