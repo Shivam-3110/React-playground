@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { NavLink } from 'react-router';
 
 
 function Navbar() {
@@ -7,9 +8,9 @@ function Navbar() {
     <div className='bg-black text-white p-5 flex items-center justify-between '> 
         <div> logo </div>
         <div className="flex gap-10 text-xl rounded">
-            <p className='cursor-pointer'> Home </p>
-            <p className='cursor-pointer'> About </p>
-             <p className='cursor-pointer'> contact </p>
+           <NavLink to={"/"}> Home </NavLink>
+           <NavLink to={"/about"}> About </NavLink>
+           <NavLink to={"/contact"}> Contact </NavLink>
         </div>
         <button> Login </button>
     </div>
