@@ -3,6 +3,7 @@ import Home from '../Pages/Home'
 import About from '../Pages/About'
 import Products from '../Pages/Products'
 import { Route, Routes } from 'react-router'
+import ProductDetails from '../Pages/ProductDetails'
 
 function AppRoutes() {
   return (
@@ -11,6 +12,7 @@ function AppRoutes() {
             <Route path="/" element={<Home/>}></Route>
             <Route path="/about" element={<About/>}></Route>
             <Route path="/products" element={<Products/>}></Route>
+            <Route path= "/detail/:id" element={<ProductDetails/>} />
         </Routes>
     </div>
   )
