@@ -1,14 +1,28 @@
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
+import { Auth } from "../context/AuthContext";
 
 function LoginPage() {
+
+  const {registeredUsers, setloggedinUsers} = useContext(Auth)
+
   const [showPassword, setShowPassword] = useState(false);
          let {register,handleSubmit,reset,formState:{errors}} = useForm();
       let navigate = useNavigate();
       let formSubmit = (data) => {
-        console.log(data)
+      let user = registeredUsers.find(
+        (val) => val.email === data.email && val.password === data.password);
+      if(!user){
+        toast.error("Invalid email or password")
+        return
+      }
+        setloggedinUsers(user)
+        toast.success("Logged in Successfully")
+        localStorage.setItem("LoggedInUsers",JSON.stringify(user))
+        navigate("/main")
         reset()
       }
   return (
@@ -63,7 +77,9 @@ function LoginPage() {
               </p>
             </div>
 
-            <form className="space-y-5">
+            <form 
+            onSubmit={handleSubmit(formSubmit)}
+            className="space-y-5">
 
               {/* Email */}
               <div>
@@ -75,6 +91,9 @@ function LoginPage() {
                 </label>
 
                 <input
+                 {...register("email",{
+                    required:"email is required"
+                 })}
                   id="email"
                   type="email"
                   placeholder="you@example.com"
@@ -116,6 +135,9 @@ function LoginPage() {
                 <div className="relative">
 
                   <input
+                   {...register("password",{
+                    required:"password is required"
+                 })}
                     id="password"
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter your password"
@@ -251,5 +273,4 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
 
