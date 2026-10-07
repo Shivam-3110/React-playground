@@ -17,6 +17,7 @@ function RegisterPage() {
     setRegisteredUsers(arr)
     toast.success("Registered Successfully")
     localStorage.setItem("registeredUsers",JSON.stringify(arr))
+    navigate("/main")
     reset()
   }
   return (

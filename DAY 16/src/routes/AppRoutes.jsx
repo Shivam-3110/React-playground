@@ -7,6 +7,7 @@ import Authlayouts from '../layouts/Authlayouts'
 import LoginPage from '../pages/LoginPage'
 import RegisterPage from '../pages/RegisterPage'
 import MainLayout from '../layouts/MainLayout'
+import ProtectedRoutes from './ProtectedRoutes'
 
 function AppRoutes() {
     let router = createBrowserRouter([
@@ -24,24 +25,29 @@ function AppRoutes() {
         }  
     ]
        },
-       {
-        path:"/main",
-        element:<MainLayout/>,
-        children:[
-            {
-                path:"",
-                element:<Home/>
-            },
-            {
-                path:"about",
-                element:<About/>
-            },
-            {
-                path:"services",
-                element:<Services/>
-            }
-        ]
-       }
+        {
+            path: "/main",
+            element: <ProtectedRoutes />,
+            children: [
+                {
+                    element: <MainLayout />,
+                    children: [
+                        {
+                            index: true,
+                            element: <Home />
+                        },
+                        {
+                            path: "about",
+                            element: <About />
+                        },
+                        {
+                            path: "services",
+                            element: <Services />
+                        }
+                    ]
+                }
+            ]
+        }
     ])
   return (
     <div>
