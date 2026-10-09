@@ -22,7 +22,6 @@ function LoginPage() {
         setloggedinUsers(user)
         toast.success("Logged in Successfully")
         localStorage.setItem("LoggedInUsers",JSON.stringify(user))
-        navigate("/main")
         reset()
       }
   return (

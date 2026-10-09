@@ -17,7 +17,6 @@ function RegisterPage() {
     setRegisteredUsers(arr)
     toast.success("Registered Successfully")
     localStorage.setItem("registeredUsers",JSON.stringify(arr))
-    navigate("/main")
     reset()
   }
   return (
@@ -103,7 +102,7 @@ function RegisterPage() {
                     focus:ring-orange-100
                   "
                 />
-                {errors.email && <p>{errors.name.message} </p>}
+                {errors.name && <p>{errors.name.message} </p>}
               </div>
 
               {/* Gmail */}
@@ -134,7 +133,7 @@ function RegisterPage() {
                     focus:ring-orange-100
                   "
                 />
-                {errors.name && <p>{errors.name.message} </p>}
+                {errors.email && <p>{errors.email.message} </p>}
 
               </div>
 
@@ -172,7 +171,7 @@ function RegisterPage() {
                       focus:ring-orange-100
                     "
                   />
-             {errors.password && <p>{errors.name.message} </p>}
+             {errors.password && <p>{errors.password.message} </p>}
 
                   <button
                     type="button"

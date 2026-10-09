@@ -8,22 +8,31 @@ import LoginPage from '../pages/LoginPage'
 import RegisterPage from '../pages/RegisterPage'
 import MainLayout from '../layouts/MainLayout'
 import ProtectedRoutes from './ProtectedRoutes'
+import PublicRoutes from './PublicRoutes'
+import ProductPage from '../pages/ProductPage'
+import UsersPage from '../pages/UsersPage'
 
 function AppRoutes() {
     let router = createBrowserRouter([
       { 
         path:"/",
-        element:<Authlayouts/>,
-      children: [   
-      {
-            path:"",
-            element:<LoginPage/>
-        },
-        {
-            path:"/register",
-            element:<RegisterPage/>
-        }  
-    ]
+        element:<PublicRoutes/>,
+        children:[
+            {
+                path:"",
+                element:<Authlayouts/>,
+                children:[
+                    {
+                        path:"",
+                        element:<LoginPage/>
+                    },
+                    {
+                        path:"register",
+                        element:<RegisterPage/>
+                    }
+                ]
+            }
+        ]
        },
         {
             path: "/main",
@@ -43,6 +52,14 @@ function AppRoutes() {
                         {
                             path: "services",
                             element: <Services />
+                        },
+                        {
+                            path: "users",
+                            element: <UsersPage />
+                        },
+                        {
+                            path: "products",
+                            element: <ProductPage />
                         }
                     ]
                 }
