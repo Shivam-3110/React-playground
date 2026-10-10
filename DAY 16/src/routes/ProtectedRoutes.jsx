@@ -6,7 +6,7 @@ function ProtectedRoutes() {
     
     let user = registeredUsers.find((user) => user.email === loggedinUsers?.email && user.password === loggedinUsers?.password)
     
-    if(!loggedinUsers || !user){
+    if(!loggedinUsers){
         return <Navigate to="/"/>
     }
   return (
