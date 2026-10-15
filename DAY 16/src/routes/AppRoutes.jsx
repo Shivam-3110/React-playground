@@ -9,9 +9,10 @@ import RegisterPage from '../pages/RegisterPage'
 import MainLayout from '../layouts/MainLayout'
 import ProtectedRoutes from './ProtectedRoutes'
 import PublicRoutes from './PublicRoutes'
-import ProductPage from '../pages/ProductPage'
-import UsersPage from '../pages/UsersPage'
 
+import { lazy } from 'react'
+let UsersPage = lazy(() => import('../pages/UsersPage'))
+let ProductPage = lazy(() => import('../pages/ProductPage'))
 function AppRoutes() {
     let router = createBrowserRouter([
       { 

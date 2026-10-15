@@ -3,6 +3,8 @@ import axios from 'axios'
 function App() {
   const [searchTerm, setSearchTerm] = useState(null)
   const [products, setProducts] = useState([])
+  const [scroll , setScroll] = useState(null);
+  let throttle = true;
   const getProducts = async () => {
     const response = await axios.get('https://fakestoreapi.com/products');
     console.log(response.data)
@@ -14,6 +16,7 @@ function App() {
     })
     setProducts(result);
   }
+  // deboucing..
     useEffect(() =>{
       if(!searchTerm) return;
     let timeOut = setTimeout(()=>{
@@ -22,6 +25,20 @@ function App() {
       return () => clearTimeout(timeout);
     },[searchTerm])
 
+    // throttling
+    useEffect(() => {
+     
+
+      let handleScroll =() => {
+         if(throttle) return;
+      console.log("scroll trigreed");
+      setScroll(window.scrollY);
+    }
+
+    window.addEventListener("scroll",handleScroll);
+    return () => window.removeEventListener("scroll",handleScroll);
+  },[])
+  
 
     useEffect(() => {
       getProducts()
