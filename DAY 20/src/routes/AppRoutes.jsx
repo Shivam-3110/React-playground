@@ -7,7 +7,8 @@ import MainLayout from '../layout/MainLayout';
 import HomePage from '../Pages/HomePage';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../features/AuthSlice';
-
+import {publicProtected} from "../routes/protected/publicProtected"
+import {mainProtected} from "../routes/protected/mainProtected"
 function AppRoutes() {
     let dispatch = useDispatch()
   
@@ -30,27 +31,39 @@ useEffect(() => {
    let router = createBrowserRouter([
     {
         path:"/",
-        element:<AuthLayout/>,
+        element:<publicProtected/>,
         children:[
             {
-                path:"",
-                element:<LoginPage/>
-            },
-            {
-                path:"register",
-                element:<Register/>
-            }
+            path:"",
+            element:<AuthLayout/>,
+            children:[
+                {
+                    path:"",
+                    element:<LoginPage/>
+                },
+                {
+                    path:"/register",
+                    element:<Register/>
+                }
+            ]
+        }
         ]
     },
     {
         path:"/main",
-        element:<MainLayout/>,
+        element:<mainProtectedRoutes/>,
+        children:[
+            {
+                path:"",
+                 element:<MainLayout/>,
         children:[
             {
                 path:"",
                 element:<HomePage/>
             }
 
+        ]
+            }
         ]
     }
    ])

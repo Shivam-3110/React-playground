@@ -7,7 +7,7 @@ function publicProtected() {
 
     let {user} = useSelector((store) => store.auth);
     if (user){
-        return <Navigate to ={"/Home"}/>
+        return <Navigate to ={"/main"}/>
     }
   return (
     <Outlet/>
