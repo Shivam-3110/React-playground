@@ -23,29 +23,13 @@ function Register() {
     reset,
     errors,
     isSubmitting,
+    registerForm
   } = useAuth();
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [serverError, setServerError] = useState("");
 
-  // React Hook Form handles validation before calling this function.
-  const onSubmit = async (data) => {
-    setServerError("");
-
-    try {
-      // Connect your registration API here.
-      console.log("Registration data:", data);
-
-      // After successful API registration:
-      // reset();
-      // navigate("/login");
-    } catch (error) {
-      setServerError(
-        error.message || "Registration failed. Please try again."
-      );
-    }
-  };
 
   const inputClass =
     "h-12 w-full rounded-xl border border-white/10 bg-[#191719] pl-12 pr-12 text-sm text-white outline-none transition placeholder:text-gray-600 focus:border-[#FF6D29] focus:ring-2 focus:ring-[#FF6D29]/20";
@@ -172,7 +156,7 @@ function Register() {
 
             {/* Registration form */}
             <form
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={handleSubmit(registerForm)}
               noValidate
               className="space-y-4"
             >

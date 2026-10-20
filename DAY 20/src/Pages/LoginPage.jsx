@@ -21,27 +21,13 @@ function LoginPage() {
     handleSubmit,
     errors,
     isSubmitting,
+    loginForm
   } = useAuth();
 
   const [showPassword, setShowPassword] = useState(false);
   const [serverError, setServerError] = useState("");
 
-  // React Hook Form validates the inputs before calling onSubmit.
-  const onSubmit = async (data) => {
-    setServerError("");
-
-    try {
-      // Connect your login API here.
-      console.log("Login data:", data);
-
-      // After successful login:
-      // navigate("/");
-    } catch (error) {
-      setServerError(
-        error.message || "Login failed. Please try again."
-      );
-    }
-  };
+  
 
   const inputClass =
     "h-14 w-full rounded-xl border border-white/10 bg-[#191719] pl-12 pr-12 text-sm text-white outline-none transition placeholder:text-gray-600 focus:border-[#FF6D29] focus:ring-2 focus:ring-[#FF6D29]/20";
@@ -168,7 +154,7 @@ function LoginPage() {
 
             {/* LOGIN FORM */}
             <form
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={handleSubmit(loginForm)}
               noValidate
               className="space-y-6"
             >
