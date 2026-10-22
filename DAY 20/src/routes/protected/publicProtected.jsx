@@ -1,18 +1,15 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router';
 
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { Outlet, useNavigate } from 'react-router'
+function PublicProtected() {
+    const { user } = useSelector((store) => store.auth);
 
-function publicProtected() {
-
-    let {user} = useSelector((store) => store.auth);
-    if (user){
-        return <Navigate to ={"/main"}/>
+    if (user) {
+        return <Navigate to="/main" replace />;
     }
-  return (
-    <Outlet/>
-  )
+
+    return <Outlet />;
 }
 
-
-export default publicProtected
+export default PublicProtected;

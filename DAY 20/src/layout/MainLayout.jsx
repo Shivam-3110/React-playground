@@ -1,8 +1,17 @@
 import React from 'react'
+import { Outlet } from 'react-router'
+import Navbar from '../components/Navbar'
 
 function MainLayout() {
   return (
-    <div>MainLayout</div>
+    <div className="p-2 h-screen bg-black text-white">
+     
+      <Navbar/>
+      <div className="p-4">
+ <Outlet/>
+      </div>
+     
+    </div>
   )
 }
 

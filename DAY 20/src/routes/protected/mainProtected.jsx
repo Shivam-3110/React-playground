@@ -1,18 +1,16 @@
 
-
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Outlet, useNavigate } from 'react-router'
+import { Navigate, Outlet } from 'react-router'
 
-function mainProtected() {
+function MainProtected() {
 
     let {user} = useSelector((store) => store.auth);
     if (!user){
         return <Navigate to ={"/"}/>
     }
-  return (
-    <Outlet/>
-  )
+  return  <Outlet/>
+  
 }
 
-export default mainProtected
+export default MainProtected

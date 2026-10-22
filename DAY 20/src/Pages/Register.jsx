@@ -403,7 +403,7 @@ function Register() {
             <p className="mt-7 text-center text-sm text-gray-400">
               Already have an account?{" "}
               <Link
-                to="/login"
+                to="/"
                 className="font-semibold text-[#FF6D29] transition hover:text-orange-400"
               >
                 Login

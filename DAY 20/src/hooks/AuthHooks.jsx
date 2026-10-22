@@ -3,20 +3,34 @@ import {useForm} from "react-hook-form"
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addUser } from "../features/AuthSlice";
+import { useState } from "react";
 
 
 export const useAuth = () => {
     let dispatch = useDispatch()
     let navigate = useNavigate();
-    const [registeredUsers,setRegisteredUsers] = useState(JSON.parse(localStorage.getItem("registeredUsers")));
+    const [registeredUsers, setRegisteredUsers] = useState(() => {
+        const users = JSON.parse(localStorage.getItem("registeredUsers") || "[]");
+        return Array.isArray(users) ? users : [];
+    });
 
     let {register,handleSubmit,reset,formState:{errors}} = useForm();
 
     const registerForm = (data) => {
-        let arr = [...registeredUsers,data]
-        setRegisteredUsers(arr)
-        localStorage.setItem("registeredUsers",JSON.stringify(registeredUsers));
-        toast.success("user registered successfully")
+        const user = {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+        };
+        const updatedUsers = [...registeredUsers, user];
+
+        localStorage.setItem("registeredUsers", JSON.stringify(updatedUsers));
+        localStorage.setItem("loggedInUser", JSON.stringify(user));
+        setRegisteredUsers(updatedUsers);
+        dispatch(addUser(user));
+        toast.success("User registered successfully");
+        reset();
+        navigate("/main");
     };
     const loginForm = (data) => {
         let user = registeredUsers.find((val) =>{
@@ -29,9 +43,9 @@ export const useAuth = () => {
        
         dispatch(addUser(user))
         localStorage.setItem("loggedInUser",JSON.stringify(user));
-         toast.success("Login Sucessfull");
+         toast.success("Login successful");
         reset()
-        navigate("/Home")
+        navigate("/main")
     };
 
     return {

@@ -7,8 +7,11 @@ import MainLayout from '../layout/MainLayout';
 import HomePage from '../Pages/HomePage';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../features/AuthSlice';
-import {publicProtected} from "../routes/protected/publicProtected"
-import {mainProtected} from "../routes/protected/mainProtected"
+import PublicProtected from './protected/publicProtected';
+import MainProtected from './protected/mainProtected';
+import { toast } from 'react-toastify';
+import ShopPage from '../Pages/ShopPage';
+
 function AppRoutes() {
     let dispatch = useDispatch()
   
@@ -31,7 +34,7 @@ useEffect(() => {
    let router = createBrowserRouter([
     {
         path:"/",
-        element:<publicProtected/>,
+        element:<PublicProtected/>,
         children:[
             {
             path:"",
@@ -51,7 +54,7 @@ useEffect(() => {
     },
     {
         path:"/main",
-        element:<mainProtectedRoutes/>,
+        element:<MainProtected/>,
         children:[
             {
                 path:"",
@@ -60,6 +63,10 @@ useEffect(() => {
             {
                 path:"",
                 element:<HomePage/>
+            },
+             {
+                path:"shop",
+                element:<ShopPage/>
             }
 
         ]
