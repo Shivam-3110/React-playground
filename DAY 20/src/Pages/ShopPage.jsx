@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import ProductCard from '../components/ProductCard';
+import React, { useEffect, useState } from "react";
+
+import ProductCard from "../components/ProductCard";
+import { useProductApi } from "../hooks/productsHooks";
+import Filters from "../components/Filters";
+
 
 function ShopPage() {
-const [productsData , setProductsData] = useState([])
-const getProductsData = async () => {
-try {
-const res = await axios.get('https://dummyjson.com/products');
-console.log(res.data.products);
-setProductsData(res.data.products)
-} catch (error) {
-console.log('Error in products API', error);
+ let {isPending,data,error} =  useProductApi()
+
+
+
+if (isPending) {
+return <p className="p-10 text-center">Loading products...</p>;
 }
-};
 
-useEffect(() => {
-getProductsData();
-}, []);
+return ( <div className="min-h-screen bg-black px-5 py-10"> <h1 className="mb-2 text-center text-3xl font-bold text-orange-900">
+Our Products </h1>
 
-return (
-   <div className="min-h-screen bg-black p-8">
+  <p className="mb-10 text-center text-white-500">
+    Discover products you'll love.
+  </p>
+   <Filters/>
+  <div className="mx-auto grid max-w-7xl grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    {data.map((product) => (
+      <ProductCard key={product.id} product={product} />
+    ))}
+  </div>
+</div>
 
- <div className='mx-auto grid max-w-7xl grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
-  {
-  productsData.map((val) => {
-    return <ProductCard key = {val.id} product={val}/>
-  })}
- </div>
 
-   </div>
 );
 }
 
