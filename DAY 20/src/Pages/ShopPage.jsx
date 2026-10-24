@@ -6,7 +6,7 @@ import Filters from "../components/Filters";
 
 
 function ShopPage() {
- let {isPending,data,error} =  useProductApi()
+ let {isPending,data,error,filteredProducts} =  useProductApi()
 
 
 
@@ -22,8 +22,12 @@ Our Products </h1>
   </p>
    <Filters/>
   <div className="mx-auto grid max-w-7xl grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-    {data.map((product) => (
+    { 
+      filteredProducts ? filteredProducts.map((product)=>(
+         <ProductCard key={product.id} product={product} />
+      )) :  data.map((product) => (
       <ProductCard key={product.id} product={product} />
+         
     ))}
   </div>
 </div>
